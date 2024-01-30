@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="../static/list.css"> -->
+
+  <title>{% block title %}Todo App{% endblock %}</title>
+
+  <style>
+    /* Custom styles for dark background */
+    body {
+        background-color: #343a40; /* Use your desired dark color code */
+    }
+    .section_our_solution .row {
+      align-items: center;
+    }
+    
+    .our_solution_category {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .our_solution_category .solution_cards_box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .solution_cards_box .solution_card {
+      flex: 0 50%;
+      background: #fff;
+      box-shadow: 0 2px 4px 0 rgba(136, 144, 195, 0.2),
+        0 5px 15px 0 rgba(37, 44, 97, 0.15);
+      border-radius: 15px;
+      margin: 8px;
+      padding: 10px 15px;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      min-height: 265px;
+      transition: 0.7s;
+    }
+    
+    .solution_cards_box .solution_card:hover {
+      background: #309df0;
+      color: #fff;
+      transform: scale(1.1);
+      z-index: 9;
+    }
+    
+    .solution_cards_box .solution_card:hover::before {
+      background: rgb(85 108 214 / 10%);
+    }
+    
+    .solution_cards_box .solution_card:hover .solu_title h3,
+    .solution_cards_box .solution_card:hover .solu_description p {
+      color: #fff;
+    }
+    
+    .solution_cards_box .solution_card:before {
+      content: "";
+      position: absolute;
+      background: rgb(85 108 214 / 5%);
+      width: 170px;
+      height: 400px;
+      z-index: -1;
+      transform: rotate(42deg);
+      right: -56px;
+      top: -23px;
+      border-radius: 35px;
+    }
+    
+    .solution_cards_box .solution_card:hover .solu_description button {
+      background: #fff !important;
+      color: #309df0;
+    }
+    
+    .solution_card .so_top_icon {
+    }
+    
+    .solution_card .solu_title h3 {
+      color: #212121;
+      font-size: 1.3rem;
+      margin-top: 13px;
+      margin-bottom: 13px;
+    }
+    
+    .solution_card .solu_description p {
+      font-size: 15px;
+      margin-bottom: 15px;
+    }
+    
+    .solution_card .solu_description button {
+      border: 0;
+      border-radius: 15px;
+      background: linear-gradient(
+        140deg,
+        #42c3ca 0%,
+        #42c3ca 50%,
+        #42c3cac7 75%
+      ) !important;
+      color: #fff;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 5px 16px;
+    }
+    
+    .our_solution_content h1 {
+      text-transform: capitalize;
+      margin-bottom: 1rem;
+      font-size: 2.5rem;
+    }
+    .our_solution_content p {
+    }
+    
+    .hover_color_bubble {
+      position: absolute;
+      background: rgb(54 81 207 / 15%);
+      width: 100rem;
+      height: 100rem;
+      left: 0;
+      right: 0;
+      z-index: -1;
+      top: 16rem;
+      border-radius: 50%;
+      transform: rotate(-36deg);
+      left: -18rem;
+      transition: 0.7s;
+    }
+    
+    .solution_cards_box .solution_card:hover .hover_color_bubble {
+      top: 0rem;
+    }
+    
+    .solution_cards_box .solution_card .so_top_icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #fff;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .solution_cards_box .solution_card .so_top_icon img {
+      width: 40px;
+      height: 50px;
+      object-fit: contain;
+    }
+    
+    /*start media query*/
+    @media screen and (min-width: 320px) {
+      .sol_card_top_3 {
+        position: relative;
+        top: 0;
+      }
+    
+      .our_solution_category {
+        width: 100%;
+        margin: 0 auto;
+      }
+    
+      .our_solution_category .solution_cards_box {
+        flex: auto;
+      }
+    }
+    @media only screen and (min-width: 768px) {
+      .our_solution_category .solution_cards_box {
+        flex: 1;
+      }
+    }
+    @media only screen and (min-width: 1024px) {
+      .sol_card_top_3 {
+        position: relative;
+        top: -3rem;
+      }
+      .our_solution_category {
+        width: 50%;
+        margin: 0 auto;
+      }
+    }
+    
+  </style>
+</head>
+
+<body >
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'list' %}">
+      <div class="logo-container rounded" style="width: 80px; height: 80px;margin-top: -20px;margin-bottom: -20px; background-image: url('https://lh6.ggpht.com/aiY9J8YK8Lzr7hMC7nZWlZGiBn8TF_PY7NVNy5U1i5g4zG8yEPzEZTJK2WwbWJUogg'); background-size: cover;"></div>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'list' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/">Add</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'sortdata' %}">Priority Sorting</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'sortdataDate' %}">Deadline Sorting</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Status Sorting
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="filterDataIncomplete">Incomplete</a>
+            <a class="dropdown-item" href="filterDataComplete">Complete</a>
+          </div>
+        </li>
+    </div>
+  </nav>
+  {% block content %}
+  
+  <div class="row" style="align-items: center; height: 90vh;">
+    <div class="col-md-6" style="margin: 0 auto;">
+      <form action="{% url 'submit' %}" class="border border-3 rounded" style="padding: 10px; color: #fff;">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" class="form-control" id="title" name="title">
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="endDate">End Date</label>
+          <input type="text" class="form-control" id="endDate" name="endDate" placeholder="DD-MM-YYYY">
+        </div>
+        <div class="form-group">
+          <label for="priority">Priority Number</label>
+          <input type="number" class="form-control" id="priority" name="priority">
+        </div>
+        <div class="form-group">
+          <label for="status">Status</label>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="status" id="inlineRadio1" value="0">
+            <label class="form-check-label" for="Incomplete">Incomplete</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="1">
+            <label class="form-check-label" for="Complete">Complete</label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin: 0 auto;display: block;">Add Task</button>
+      </form>
+    </div>
+  </div>
+  {% endblock %}
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
