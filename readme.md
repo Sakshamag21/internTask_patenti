@@ -64,7 +64,7 @@ To run the application, follow these steps:
 Using docker:
 
 1. Follow first 3 steps.
-2. Build the Docker image: `docker build -t todoapp .`
-3. Run the Docker container: `docker run -p 8000:8000 todoapp`
+2. Build the Docker image: `docker-compose build .`
+3. Run the Docker container: `docker-compose up`
 
 The application will be accessible at [http://localhost:8000](http://localhost:8000).
